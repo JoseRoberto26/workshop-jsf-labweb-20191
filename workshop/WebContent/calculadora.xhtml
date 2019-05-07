@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<h:form>
+		<p:fieldset legend="Calculadora">
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Numero 1:" for="num1" />
+				<p:inputText id="num1" value="#{calculadora.numero1}"/>
+				<p:outputLabel value="Numero 2:" for="num2" />
+				<p:inputText id="num2" value="#{calculadora.numero2}"/>
+			</h:panelGrid>
+			<h:panelGrid>
+				<p:commandButton value="Somar" action="#{calculadora.somar}"
+					update="@form: formListaResultados:tabelaResultados" process="@form">
+				</p:commandButton>
+			</h:panelGrid>
+		</p:fieldset>
+	</h:form>
+	<br />
+	<h:form id="formListaResultados">
+		<p:dataTable var="resultado" value="#{calculadora.resultados}" id="tabelaResultados">
+			<p:column headerText="Resultado">
+				<h:outputText value="#{resultado}" />
+			</p:column>
+			<p:column headerText="">
+				<h:commandButton value="Remover"
+					action="#{calculadora.remover(resultado)}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
